@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, ">
+
+
+        <title>Atom Snippets - Dana  </title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/dana.html" title="See posts by Dana">
+                </a>
+                <h2 class="article-info">Dana</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>三 27 7月 2016</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Atom Snippets</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/atom.html">atom</a>
+                        </p>
+                </header>
+            </section>
+            <p>前些日子受不了sublime一直跳出來付款的對話框，決定來試試看舅舅大推的atom</p>
+<p>atom對於packages處理方式真的很棒很直覺化，而且大部分有支援sublime的其實在atom都有支援，介於此加上優美介面，立馬跳槽</p>
+<p>跳槽有一項大工程就是搬移Snippets</p>
+<p>在atom snippet的建立方式很不一樣，他屬於在一個文件建立所有snippet，不像sublime要各別存檔</p>
+<p>首先，點開atom -&gt; snippets</p>
+<p>點擊後會自動打開一個叫snippets.cson的編輯檔案，裡面有簡單編輯檔案，檔案裡頭有簡單的解釋，其中有一段</p>
+<div class="highlight"><pre><span></span>‘.source.coffee’:          #指令適用的程式屬性
+#‘Console log’:             #指令名稱
+#‘prefix’: ‘log’            #指令快捷鍵
+#‘body’: ‘console.log $1’   #指令內容物
+</pre></div>
+
+
+<p>程式屬性可參考下列</p>
+<div class="highlight"><pre><span></span>HTML: .text.html.basic
+CSS: .source.css
+SASS: .source.sass
+JavaScript: .source.js
+JSON: .source.json
+PHP: .text.html.php
+Java: .source.java
+Ruby: .text.html.erb
+Python: .source.python
+plain text (including markdown): .text.plain
+</pre></div>
+
+
+<p>比如說我要加入一個屬於css的snippets,我就會加入下列幾行</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">css</span>
+<span class="err">#</span> <span class="nt">check</span> <span class="nt">line</span>
+<span class="err">‘</span><span class="p">.</span><span class="nc">source</span><span class="p">.</span><span class="nc">css</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">css</span> <span class="nt">check</span> <span class="nt">line</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">prefix</span><span class="err">’</span><span class="o">:</span> <span class="err">‘</span><span class="nt">lll</span><span class="err">’</span>
+ <span class="err">‘</span><span class="nt">body</span><span class="err">’</span><span class="o">:</span> <span class="err">‘’’</span>
+ <span class="nt">border</span><span class="o">:</span> <span class="nt">1px</span> <span class="nt">solid</span> <span class="p">#</span><span class="nn">a00</span><span class="o">;</span>
+<span class="err">‘’’</span>
+</pre></div>
+
+
+<p>這樣我只要打lll就會出現<code>border: 1px solid #a00</code>了歐！！</p>
+<blockquote>
+<p>參考網站 <a href="https://www.sitepoint.com/use-code-snippets-atom/">How to Create Your Own Snippets</a></p>
+</blockquote>
+<p>如果，我今天要加入很多個css的snippets怎麼辦
+不要傻傻的把上述打兩次歐，這樣atom只會吃到最後一個屬於css的snippets</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">css</span>
+<span class="err">#</span> <span class="nt">check</span> <span class="nt">line</span>
+<span class="err">‘</span><span class="p">.</span><span class="nc">source</span><span class="p">.</span><span class="nc">css</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">css</span> <span class="nt">check</span> <span class="nt">line</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">prefix</span><span class="err">’</span><span class="o">:</span> <span class="err">‘</span><span class="nt">lll</span><span class="err">’</span>
+ <span class="err">‘</span><span class="nt">body</span><span class="err">’</span><span class="o">:</span> <span class="err">‘’’</span>
+ <span class="nt">border</span><span class="o">:</span> <span class="nt">1px</span> <span class="nt">solid</span> <span class="p">#</span><span class="nn">a00</span><span class="o">;</span>
+<span class="err">‘’’</span>
+<span class="err">‘</span><span class="nt">css</span> <span class="nt">check</span> <span class="nt">line2</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">prefix</span><span class="err">’</span><span class="o">:</span> <span class="err">‘</span><span class="nt">ll2</span><span class="err">’</span>
+ <span class="err">‘</span><span class="nt">body</span><span class="err">’</span><span class="o">:</span> <span class="err">‘’’</span>
+ <span class="nt">border</span><span class="o">:</span> <span class="nt">1px</span> <span class="nt">solid</span> <span class="p">#</span><span class="nn">0a0</span><span class="o">;</span>
+<span class="err">‘’’</span>
+</pre></div>
+
+
+<p>就如上述直接加在第一個‘.source.css’後面就好了！</p>
+<p>好拉，經過以上的步驟，我相信已經能創造出簡易的snippetes了</p>
+<p>但是要懶就要懶到極致，我想要打出snippetes後讓滑鼠游標直接落在我想要的位置怎麼辦？</p>
+<p>標籤 content 中的游標順序，『$0』 代表最後的游標位置。所以如果你的標籤 content 中有 $0 $1 $2 $3，那麼你每按一次 tab 鍵，游標的順序會是 『$1 -&gt; $2 -&gt; $3 -&gt; $0』</p>
+<div class="highlight"><pre><span></span>$0                 游標的地方不會有文字
+<span class="cp">${</span><span class="mi">0</span><span class="p">:</span><span class="n">Hello_World</span><span class="cp">}</span>   游標的位置會有 hello_world 被反白
+</pre></div>
+
+
+<p>例如</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">css</span>
+<span class="err">#</span> <span class="nt">check</span> <span class="nt">line</span>
+<span class="err">‘</span><span class="p">.</span><span class="nc">source</span><span class="p">.</span><span class="nc">css</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">css</span> <span class="nt">check</span> <span class="nt">line</span><span class="err">’</span><span class="o">:</span>
+ <span class="err">‘</span><span class="nt">prefix</span><span class="err">’</span><span class="o">:</span> <span class="err">‘</span><span class="nt">lll</span><span class="err">’</span>
+ <span class="err">‘</span><span class="nt">body</span><span class="err">’</span><span class="o">:</span> <span class="err">‘’’</span>
+ <span class="nt">border</span><span class="o">:</span> <span class="nt">1px</span> <span class="nt">solid</span> <span class="o">$</span><span class="nt">0</span><span class="o">;</span>
+<span class="err">‘’’</span>
+</pre></div>
+
+
+<p>如此一來，當我打出<code>lll</code>後，滑鼠游標就會自動位移到solid後囉！
+ps.因為 『$』 符號，本來是內部用來設定游標位置的，所以要強制輸出 『$』 符號，務必添加斜線 『\』來跳脫字元，所以要寫成 『\$something』。</p>
+<blockquote>
+<p>參考網站 <a href="http://jsnwork.kiiuo.com/archives/2023/sublime-text-教你如何自訂習慣用的片段，加速程式碼的">JSNWORK</a></p>
+</blockquote>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built with Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>

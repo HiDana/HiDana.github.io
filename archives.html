@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, ">
+
+
+        <title>all posts // Dana  </title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('./images/theme/theme_bg4.jpg')">
+        <div class="cover-body">
+            <header class="header">
+                <hgroup>
+                    <h1 class="brand-main"><a href="/">Dana</a></h1>
+                    <p class="tagline"></p>
+                    <p class="links"><a href="archives.html">Archives</a></p>
+                    <p class="social">
+                        <a href="https://github.com/HiDana">
+                            <i class="fa fa-github fa-3x"></i>
+                        </a>
+                        <a href="https://medium.com/@danachen">
+                            <i class="fa fa-medium fa-3x"></i>
+                        </a>
+                        <a href="https://www.facebook.com/dana.chen.16">
+                            <i class="fa fa-facebook fa-3x"></i>
+                        </a>
+                    <p>
+                </hgroup>
+            </header>
+        </div>
+    </div>
+</div>    <div class="pure-u-1">
+        <div class="content">
+            <h1 class="content-subhead">All posts</h1>
+                <div class="archive-item">
+                    <a href="./author/dana.html" title="See posts by Dana">
+                    </a>
+                    <h5 class="archive-date">2017</h5>
+                    <h4 class="archive-date">28 2月</h4>
+                    <div class="archive-post"><a href="20170228.html">我推的不是坑，是挖坑給你跳</a></div>
+                    <p class="archive-meta">Dana in <a href="./category/artical.html">artical</a></p>
+                </div>
+                <div class="archive-item">
+                    <a href="./author/dana.html" title="See posts by Dana">
+                    </a>
+                    <h5 class="archive-date">2016</h5>
+                    <h4 class="archive-date">08 10月</h4>
+                    <div class="archive-post"><a href="20161008.html">資策會的那些日子</a></div>
+                    <p class="archive-meta">Dana in <a href="./category/artical.html">artical</a></p>
+                </div>
+                <div class="archive-item">
+                    <a href="./author/dana.html" title="See posts by Dana">
+                    </a>
+                    <h5 class="archive-date">2016</h5>
+                    <h4 class="archive-date">27 7月</h4>
+                    <div class="archive-post"><a href="20160727.html">Atom Snippets</a></div>
+                    <p class="archive-meta">Dana in <a href="./category/artical.html">artical</a></p>
+                </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built with Dana
+    </p>
+</footer>    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
