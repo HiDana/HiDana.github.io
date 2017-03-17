@@ -238,6 +238,7 @@ pre {
     margin-top: 7px;
     width: 70px;
     height: 70px;
+    box-shadow: 0 2px 4px #aaa;
 }
 
 .archive-meta {
@@ -296,7 +297,7 @@ pre {
     text-decoration: none;
     transition: 0.2s;
     box-shadow: none;
-    border: 1px solid #555;
+    border: 1px solid #aaa;
 }
 
 .highlight pre {
