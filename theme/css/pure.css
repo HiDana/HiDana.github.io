@@ -209,13 +209,13 @@ pre {
     /*background: #999;*/
     font-size: 90%;
     border: 1px solid #eee;
-    transition: 0.3s;
+    transition: 0.2s;
     border-radius: 2px;
 }
 .post-category:hover{
     color:#aaa;
     border: 1px solid #aaa;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .archive-item {
