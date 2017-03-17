@@ -205,7 +205,7 @@ pre {
 .post-category {
     margin: 0 0.1em;
     padding: 0.2em 0.6em;
-    color: #eee;
+    color: #bbb;
     /*background: #999;*/
     font-size: 90%;
     border: 1px solid #eee;
@@ -284,9 +284,9 @@ pre {
     right: 2.2em;
     text-decoration: none;
     color: #617583;
-    background-color: rgba(244, 244, 244, 0.3);
+    background-color: rgba(250, 250, 250, 0.9);
     border-radius: 2px;
-    box-shadow: 0 2px 4px #555;
+    box-shadow: 0 1px 2px #555;
     font-size: 12px;
     padding: .7em 1.2em;
     display: none;
@@ -294,9 +294,9 @@ pre {
 .go-top:hover,
 .go-top:focus {
     text-decoration: none;
-    /*color: white;*/
     transition: 0.2s;
-    box-shadow: 0 1px 2px #555;
+    box-shadow: none;
+    border: 1px solid #555;
 }
 
 .highlight pre {
