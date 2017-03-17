@@ -275,22 +275,22 @@ pre {
     bottom: 2em;
     right: 2em;
     text-decoration: none;
-    color: white;
+    color: #617583;
     background-color: rgba(244, 244, 244, 0.3);
-    border-radius: 50px;
+    border-radius: 100px;
     box-shadow: 0 2px 4px #555;
     font-size: 12px;
-    padding: .6em;
+    padding: .8em;
     display: none;
 }
 
-.go-top:hover {
+/*.go-top:hover {
     background-color: rgba(0, 0, 0, 0.6);
-}
-.go-top a:hover,
-.go-top a:focus {
+}*/
+.go-top:hover,
+.go-top:focus {
     text-decoration: none;
-    color: white;
+    /*color: white;*/
     transition: 0.2s;
     box-shadow: 0 1px 1px #444;
 }
