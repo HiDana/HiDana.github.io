@@ -1,4 +1,5 @@
 .img{
+	border: 1px solid #0a0;
 	display: flex;
 	justify-content: center;
 	align-items: center;

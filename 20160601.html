@@ -6,7 +6,7 @@
     <meta name="description" content="Dana, ">
 
 
-        <title>我推的不是坑，是挖坑給你跳 - Dana  </title>
+        <title>解決MAMP PRO Forbidden問題 - Dana  </title>
 
     <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -34,7 +34,7 @@
                 <h2 class="article-info">Dana</h2>
                 <small class="about-author"></small>
                 <h5>Published</h5>
-                <p>二 28 2月 2017</p>
+                <p>三 01 6月 2016</p>
                 <a href="/">&larr;Home</a>
             </hgroup>
         </header>
@@ -43,25 +43,75 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>我推的不是坑，是挖坑給你跳</h1>
+                    <h1>解決MAMP PRO Forbidden問題</h1>
                         <p class="post-meta">
-                                <a class="post-category" href="./tag/mac.html">Ｍac</a>
+                                <a class="post-category" href="./tag/php.html">php</a>
+                                <a class="post-category" href="./tag/mamp.html">mamp</a>
+                                <a class="post-category" href="./tag/mac.html">mac</a>
+                                <a class="post-category" href="./tag/code.html">code</a>
                         </p>
                 </header>
             </section>
-            <h2>Img</h2>
-<h3>等比例分兩個</h3>
-<p><div class="img">
-        <img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="test" style="flex: 2;">
-        <img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="test" style="flex: 1;">
-</div></p>
-<h3>一個置中</h3>
-<p><div class="img">
-        <div class="img-p">
-            <img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="test">
-            <p>這是說明</p>
-        </div>
-</div></p>
+            <p>近期在運用mamp pro環境下寫php</p>
+<p>一開始土法煉鋼覺得沒有debug自己也能抓到蟲</p>
+<p>享受一片白的世界好一陣子</p>
+<p>但隨著越寫越深入發現這世界不再如此單純</p>
+<p>只好開始尋找如何運用mamp除蟲</p>
+<p>因為mama本身就有Xdebug除蟲程式，所以只要把它打開就好了</p>
+<p>1.選擇mama pro上方php標籤列，並把勾選打開Dedugger:Activate Xdebug</p>
+<div class="img">
+        <img src="./images/20160601/1.png" alt="20160601-1">
+</div>
+
+<p>點擊打開Dedugger:Activate Xdebug</p>
+<div class="img">
+        <img src="./images/20160601/2.png" alt="20160601-2">
+</div>
+
+<p>這時候就要去修改ini檔囉！！</p>
+<p>之前為了找ini檔翻遍整個mamp</p>
+<p>但是踏破鐵鞋無覓處，其實本身檔案的ini檔就在工作列裡</p>
+<div class="img">
+        <img src="./images/20160601/3.png" alt="20160601-3">
+</div>
+
+<p>選擇自己版本的ini檔</p>
+<p>可以從這邊觀看到自己是屬於哪一版的</p>
+<div class="img">
+        <img src="./images/20160601/4.png" alt="20160601-4">
+</div>
+
+<p>然後打開ini檔</p>
+<div class="img">
+        <img src="./images/20160601/5.png" alt="20160601-5">
+</div>
+
+<p>嘿對，他告訴你這東西別亂改要注意</p>
+<p>找到</p>
+<p>display_errors = MAMP_display_errors_MAMP</p>
+<p>這一行原本是長這樣的</p>
+<div class="img">
+        <img src="./images/20160601/6.png" alt="20160601-6">
+</div>
+
+<p>然後在前面加個分號</p>
+<p>並在底下打</p>
+<p>;display_errors = MAMP_display_errors_MAMP</p>
+<p>display_errors = On</p>
+<p>（在原始碼前打分號是為了讓他轉註釋，以免未來需要做更動時，卻忘了他在哪裡）</p>
+<div class="img">
+        <img src="./images/20160601/7.png" alt="20160601-7">
+</div>
+
+<p>完畢後按儲存</p>
+<p>從新開啟mamp環境</p>
+<p>好拉！！如此一來瀏覽器就設定完成會幫你抓錯而不是給你一片白囉！！</p>
+<div class="img">
+        <img src="./images/20160601/8.png" alt="20160601-8">
+</div>
+
+<p>參考文章</p>
+<p><a href="http://manovotny.com/setup-phpstorm-xdebug-mamp-debugging/">How To Setup and Configure PhpStorm, Xdebug, and MAMP for Debugging</a></p>
             <div class="hr"></div>
             <a href="#" class="go-top">↑</a>
 <div class="comments">
