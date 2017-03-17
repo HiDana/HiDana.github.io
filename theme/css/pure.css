@@ -277,22 +277,18 @@ pre {
     text-decoration: none;
     color: #617583;
     background-color: rgba(244, 244, 244, 0.3);
-    border-radius: 100px;
+    border-radius: 2px;
     box-shadow: 0 2px 4px #555;
     font-size: 12px;
     padding: 1em 1.2em;
     display: none;
 }
-
-/*.go-top:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-}*/
 .go-top:hover,
 .go-top:focus {
     text-decoration: none;
     /*color: white;*/
     transition: 0.2s;
-    box-shadow: 0 1px 1px #444;
+    box-shadow: 0 1px 2px #555;
 }
 
 .highlight pre {
