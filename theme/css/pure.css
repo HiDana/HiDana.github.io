@@ -287,7 +287,8 @@ pre {
     color: #617583;
     background-color: rgba(252, 252, 252, 0.9);
     border-radius: 2px;
-    box-shadow: 0 1px 2px #555;
+    box-shadow: 0 1px 2px #999;
+    border: 1px solid transparent;
     font-size: 12px;
     padding: .7em 1.2em;
     display: none;
@@ -297,7 +298,8 @@ pre {
     text-decoration: none;
     transition: 0.2s;
     box-shadow: none;
-    border: 1px solid #aaa;
+    border: 1px solid #ddd;
+    transform: translateY(2px);
 }
 
 .highlight pre {
