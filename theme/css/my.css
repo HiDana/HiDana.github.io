@@ -17,3 +17,10 @@
 .img .img_p p{
 	color: #617583;
 }
+@media (max-width: 767px) {
+	.avatarImg{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
