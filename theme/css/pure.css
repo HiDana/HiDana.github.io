@@ -369,6 +369,12 @@ pre {
     #layout {
         padding: 0;
     }
+
+    .avatarImg{
+  		display: flex;
+  		justify-content: center;
+  		align-items: center;
+  	}
 }
 
 @media (max-width: 480px) {
