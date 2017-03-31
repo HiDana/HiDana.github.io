@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>spec - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+                <div class="avatarImg">
+                  <a href="/" title="See posts by Dana">
+                      <img class="avatar" alt="Dana" src="./images/theme/author2.jpg">
+                  </a>
+                </div>
+
+                <h2 class="article-info">Dana Chen</h2>
+                <!-- <small class="about-author"></small> -->
+                <small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+                <h5>Published</h5>
+                <!-- <p>五 31 3月 2017</p> -->
+                <p>2017 03 31</p>
+                <a href="/">&larr; Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>spec</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/code.html">code</a>
+                                <a class="post-category" href="./tag/design.html">design</a>
+                                <a class="post-category" href="./tag/react.html">react</a>
+                                <a class="post-category" href="./tag/redux.html">redux</a>
+                                <a class="post-category" href="./tag/jsx.html">jsx</a>
+                                <a class="post-category" href="./tag/javascript.html">javascript</a>
+                        </p>
+                </header>
+            </section>
+            <p>Demo <a href="http://spec.hidana.me">spec</a>（開發中）</p>
+<p>↑↑↑ 點擊上方 spec 試用</p>
+<p>有介於設計與前端之間的 specification 溝通</p>
+<p>因此開發一個可供應設計與前端的簡單spec</p>
+<p>設計可於左側輸入color與font，右側body即會產生spec</p>
+<div class="img">
+        <img src="./images/20170331/1.png" alt="20170331-1">
+</div>
+
+<p>開發中遇到幾個蠻有趣的技術與大家分享</p>
+<ul>
+<li>color及font的斷點是段在每一句的分號，再用push去合併成一個陣列</li>
+</ul>
+<div class="highlight"><pre><span></span>colorText.split(&#39;;&#39;).forEach(
+      function(obj,index) {
+        result.push({
+          name: obj.split(&#39;:&#39;)[0],
+          color: obj.split(&#39;:&#39;)[1]
+        })
+      }
+    )
+</pre></div>
+
+
+<ul>
+<li>: before 的 setStyle</li>
+</ul>
+<p>在於左側輸入框的顏色會依照使用者輸入的顏色而做變動</p>
+<p>因為輸入框上面的方框是用 : before 壓在上面的</p>
+<p>網路上大部分都是運用 jquery 去把它寫出來</p>
+<p>所以在 純js 設定時，有別於平常的寫法去把before抓出來</p>
+<div class="highlight"><pre><span></span>document.getElementById(&quot;sidebar_color&quot;)
+        .appendChild(document.createElement(&quot;style&quot;))
+        .innerHTML = `#sidebar_color:before {background: <span class="cp">${</span><span class="n">resultArray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">color</span><span class="cp">}</span>;}`
+</pre></div>
+
+
+<hr>
+<p>(待續)</p>
+<p>&lt; 待開發 &gt;</p>
+<p>design 的輸出</p>
+<p>engineer 的copy</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built with Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
