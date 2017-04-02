@@ -19,15 +19,5 @@
 }
 
 blockquote{
-	position: relative;
 	color: #617583;
-}
-
-blockquote:before{
-	content: 0;
-	width: 5px;
-	height: 100%;
-	top: 0;
-	left: 0;
-	border: 1px solid #617583;
 }
