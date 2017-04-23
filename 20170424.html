@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>不會寫程式也可以做自己的機器人 - API.ai 與 Line 的甜蜜辛酸史 - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+                <div class="avatarImg">
+                  <a href="/" title="See posts by Dana">
+                      <img class="avatar" alt="Dana" src="./images/theme/author2.jpg">
+                  </a>
+                </div>
+
+                <h2 class="article-info">Dana Chen</h2>
+                <!-- <small class="about-author"></small> -->
+                <small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+                <h5>Published</h5>
+                <!-- <p>一 24 4月 2017</p> -->
+                <p>2017 04 24</p>
+                <a href="/">&larr; Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>不會寫程式也可以做自己的機器人 - API.ai 與 Line 的甜蜜辛酸史</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/code.html">code</a>
+                                <a class="post-category" href="./tag/chatbot.html">chatbot</a>
+                        </p>
+                </header>
+            </section>
+            <p>公司最近在做 chatbot 並推薦了一個 api.ai 的應用程式</p>
+<p>手癢就不專業的試了一下</p>
+<p>以下為簡單版的不專業分享</p>
+<p>製作機器人需要兩個帳號</p>
+<p>一個是 line 本身的開發人員帳號</p>
+<p><a href="https://business.line.me/zh-hant/">line business center</a></p>
+<p>再來是被 google 收購後的 api.ai 帳號 (難怪裡面介面都是 material ui)</p>
+<p><a href="https://api.ai">API.ai</a></p>
+<ul>
+<li>註冊完成後就可以按下 get started for free 開始使用 api.ai</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/1.png" alt="20170424-1">
+</div>
+
+<hr>
+<ul>
+<li>新增一個 agent 選擇好後按下 save</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/2.png" alt="20170424-2">
+</div>
+
+<p>agent 就像是你是一間店裡面裝著資料與使用者交流</p>
+<hr>
+<ul>
+<li>新增一個 foodList 的 Entities </li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/3.png" alt="20170424-3">
+</div>
+
+<p>Entities 的欄位 左側的叫做 <code>reference value</code> 右側的 叫做 <code>synonyms</code></p>
+<p>因此顧名思義的，假設今天你的菜單之一，有一道菜叫做 “頂級佛跳牆海景海鮮麵” </p>
+<p>但是熟客會知道，「歐～少來，就是”魚肉麵“啊」</p>
+<p>因此， ”魚肉麵“ 就是 “頂級佛跳牆海景海鮮麵” 的 synonyms</p>
+<p>以此類推，新增好後按下 save</p>
+<hr>
+<ul>
+<li>再來看 Intents ， 本身 Intents 有兩個預設值</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/4.png" alt="20170424-4">
+</div>
+
+<p><code>Default Fallback Intent</code> 跟 <code>Default Welcome Intent</code></p>
+<p>點開 Default Fallback Intent ，可以看到裡面 action 下面寫 <code>input.unknown</code></p>
+<div class="img">
+        <img src="./images/20170424/5.png" alt="20170424-5">
+</div>
+
+<p>這就就是在設定當使用者輸入機器人無法辨識的東西時，就會回答下面的 response</p>
+<div class="img">
+        <img src="./images/20170424/6.png" alt="20170424-6">
+</div>
+
+<p>比如說我在右邊 try it now 輸入了 “嗨嗨” 因為 “嗨嗨” 不在我們的資料庫裡，就會被認定為 <code>input.unknown</code> 因此就會隨機回覆一個 Default Fallback Intent 的 response "我怕我聽不懂你的話。"</p>
+<ul>
+<li>接下來我們新增一個 intent </li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/7.png" alt="20170424-7">
+</div>
+
+<p>在 User says 我們訓練機器人會得到的情況</p>
+<p>當人客說：「我要頂級佛跳牆海景海鮮麵」</p>
+<p>下方顯示黃色的代表說這是我們在 Entities 設定的 keyword</p>
+<p>這時老闆(機器人)就會回覆就會在下方 text response</p>
+<div class="img">
+        <img src="./images/20170424/8.png" alt="20170424-8">
+</div>
+
+<p>而在右邊的try it now 輸入 “我要頂級佛跳牆海景海鮮麵”</p>
+<p>就可以收到 “沒問題”</p>
+<hr>
+<p>目前api.ai的簡單設定到這邊，我們要先去line去開啟我們的機器人</p>
+<ul>
+<li>註冊好 line 頁面，點擊最右方 Messiaging API</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/9.png" alt="20170424-9">
+</div>
+
+<hr>
+<ul>
+<li>再點擊 開始使用 「 Messaging API 」</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/10.png" alt="20170424-10">
+</div>
+
+<p>會跳出尚未選擇公司/經營者，點擊 「 選擇公司/經營者 」</p>
+<div class="img">
+        <img src="./images/20170424/11.png" alt="20170424-11">
+</div>
+
+<hr>
+<ul>
+<li>這時就會導入 line messaging 的設定頁面</li>
+</ul>
+<p>在此頁面把姓名跟大頭照及業種選擇好，按下確定</p>
+<div class="img">
+        <img src="./images/20170424/12.png" alt="20170424-12">
+</div>
+
+<p>再按下申請</p>
+<div class="img">
+        <img src="./images/20170424/13.png" alt="20170424-13">
+</div>
+
+<p>耶～立即 前往line@manager囉</p>
+<div class="img">
+        <img src="./images/20170424/14.png" alt="20170424-14">
+</div>
+
+<hr>
+<ul>
+<li>在帳號設定 -&gt; Bot 設定 -&gt; 按下 開始使用 API</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/15.png" alt="20170424-15">
+</div>
+
+<p>華麗的按下確認</p>
+<div class="img">
+        <img src="./images/20170424/16.png" alt="20170424-16">
+</div>
+
+<p>這時多出兩個 請求設定及詳細資訊</p>
+<div class="img">
+        <img src="./images/20170424/17.png" alt="20170424-17">
+</div>
+
+<p>webhook 傳訊打開為允許，接下來我們會用 Webhook url 來做 api.ai 及 line 的連結</p>
+<p>把自動回應更改為取消，要不然每次 api.ai 回應後，line這邊也會自動回應，就會收到兩封訊息</p>
+<div class="img">
+        <img src="./images/20170424/18.png" alt="20170424-18">
+</div>
+
+<p>可以點擊上方用戶加入好友時的問候語旁的超連結做更改，更改完直接按儲存即可</p>
+<div class="img">
+        <img src="./images/20170424/19.png" alt="20170424-19">
+</div>
+
+<hr>
+<ul>
+<li>回到 bot設定，上方狀態旁有開啟 LINE Developers 點擊連結跳轉
+<div class="img">
+        <img src="./images/20170424/20.png" alt="20170424-20">
+</div></li>
+</ul>
+<p>我們需要三個資訊 <code>Channel ID</code> 、 <code>Channel Secret</code>以及最下方的<code>Channel action token</code></p>
+<p>ps.這邊的qrcode就是我機器人的qrcode歐，可以掃描加入好友，只是目前只會回加入好友問候語而已</p>
+<div class="img">
+        <img src="./images/20170424/21.png" alt="20170424-21">
+</div>
+
+<div class="img">
+        <img src="./images/20170424/22.png" alt="20170424-22">
+</div>
+
+<hr>
+<ul>
+<li>回到 api.ai，點擊 Integrations 把 line 的 button 打開
+<div class="img">
+        <img src="./images/20170424/23.png" alt="20170424-23">
+</div></li>
+</ul>
+<p>會跳出一個視窗，把我們剛剛找到的<code>Channel ID</code> 、 <code>Channel Secret</code> 、 <code>Channel action token</code>三個資訊貼上去，按下start</p>
+<p>複製 Webhook URL 裡的資訊</p>
+<div class="img">
+        <img src="./images/20170424/24.png" alt="20170424-24">
+</div>
+
+<hr>
+<ul>
+<li>回到 line developers ， 按下 Edit 把剛剛的複製的資訊貼進去 Webhook URL</li>
+</ul>
+<div class="img">
+        <img src="./images/20170424/25.png" alt="20170424-25">
+</div>
+
+<p>好拉，我們的line機器人應該大功告成了</p>
+<hr>
+<ul>
+<li>打開剛剛掃描加入好友的機器人
+<div class="img">
+        <img src="./images/20170424/26.jpg" alt="20170424-26">
+</div></li>
+</ul>
+<hr>
+<p>可以掃描下方 qrcode 或按下 加入好友 跟 Dana 機器人聊天</p>
+<div class="img">
+        <img src="http://qr-official.line.me/L/B9REXhh8cn.png">
+</div>
+
+<div class="img">
+        <a href="https://line.me/R/ti/p/%40lrn5312e"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+</div>
+
+<blockquote>
+<p>Dana 機器人還很笨，只會講垃圾話</p>
+</blockquote>
+<hr>
+<p>參考資料</p>
+<p><a href="https://docs.api.ai/docs/get-started">Get started in 5 steps</a></p>
+<p><a href="https://docs.api.ai/docs/line-integration">LINE Integration</a></p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built by Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
