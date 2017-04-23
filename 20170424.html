@@ -71,26 +71,33 @@
 <p>再來是被 google 收購後的 api.ai 帳號 (難怪裡面介面都是 material ui)</p>
 <p><a href="https://api.ai">API.ai</a></p>
 <ul>
-<li>註冊完成後就可以按下 get started for free 開始使用 api.ai</li>
+<li>註冊完成後就可以按下 get started for free 開始使用 api.ai
+<div class="img">
+    <a class="img" href="./images/20170424/1.png" data-lightbox="image-1" data-title="" >
+            <img src="./images/20170424/1.png" alt="20170424-1" >
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/1.png" data-lightbox="image-1" data-title="" >
-        <img src="./images/20170424/1.png" alt="20170424-1" >
-</a></p>
 <hr>
 <ul>
 <li>新增一個 agent 選擇好後按下 save</li>
 </ul>
-<p><a class="img" href="./images/20170424/2.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/2.png" alt="20170424-2">
-</a></p>
+<div class="img">
+    <a class="img" href="./images/20170424/2.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/2.png" alt="20170424-2">
+    </a>
+</div>
+
 <p>agent 就像是你是一間店裡面裝著資料與使用者交流</p>
 <hr>
 <ul>
-<li>新增一個 foodList 的 Entities </li>
+<li>新增一個 foodList 的 Entities 
+<div class="img">
+    <a class="img" href="./images/20170424/3.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/3.png" alt="20170424-3">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/3.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/3.png" alt="20170424-3">
-</a></p>
 <p>Entities 的欄位 左側的叫做 <code>reference value</code> 右側的 叫做 <code>synonyms</code></p>
 <p>因此顧名思義的，假設今天你的菜單之一，有一道菜叫做 “頂級佛跳牆海景海鮮麵” </p>
 <p>但是熟客會知道，「歐～少來，就是”魚肉麵“啊」</p>
@@ -98,144 +105,189 @@
 <p>以此類推，新增好後按下 save</p>
 <hr>
 <ul>
-<li>再來看 Intents ， 本身 Intents 有兩個預設值</li>
+<li>再來看 Intents ， 本身 Intents 有兩個預設值
+<div class="img">
+    <a class="img" href="./images/20170424/4.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/4.png" alt="20170424-4">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/4.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/4.png" alt="20170424-4">
-</a></p>
 <p><code>Default Fallback Intent</code> 跟 <code>Default Welcome Intent</code></p>
-<p>點開 Default Fallback Intent ，可以看到裡面 action 下面寫 <code>input.unknown</code></p>
-<p><a class="img" href="./images/20170424/5.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/5.png" alt="20170424-5">
-</a></p>
-<p>這就就是在設定當使用者輸入機器人無法辨識的東西時，就會回答下面的 response</p>
-<p><a class="img" href="./images/20170424/6.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/6.png" alt="20170424-6">
-</a></p>
+<p>點開 Default Fallback Intent ，可以看到裡面 action 下面寫 <code>input.unknown</code>
+<div class="img">
+    <a class="img" href="./images/20170424/5.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/5.png" alt="20170424-5">
+    </a>
+</div></p>
+<p>這就就是在設定當使用者輸入機器人無法辨識的東西時，就會回答下面的 response
+<div class="img">
+    <a class="img" href="./images/20170424/6.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/6.png" alt="20170424-6">
+    </a>
+</div></p>
 <p>比如說我在右邊 try it now 輸入了 “嗨嗨” 因為 “嗨嗨” 不在我們的資料庫裡，就會被認定為 <code>input.unknown</code> 因此就會隨機回覆一個 Default Fallback Intent 的 response "我怕我聽不懂你的話。"</p>
 <ul>
-<li>接下來我們新增一個 intent </li>
+<li>接下來我們新增一個 intent 
+<div class="img">
+    <a class="img" href="./images/20170424/7.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/7.png" alt="20170424-7">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/7.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/7.png" alt="20170424-7">
-</a></p>
 <p>在 User says 我們訓練機器人會得到的情況</p>
 <p>當人客說：「我要頂級佛跳牆海景海鮮麵」</p>
 <p>下方顯示黃色的代表說這是我們在 Entities 設定的 keyword</p>
-<p>這時老闆(機器人)就會回覆就會在下方 text response</p>
-<p><a class="img" href="./images/20170424/8.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/8.png" alt="20170424-8">
-</a></p>
+<p>這時老闆(機器人)就會回覆就會在下方 text response
+<div class="img">
+    <a class="img" href="./images/20170424/8.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/8.png" alt="20170424-8">
+    </a>
+</div></p>
 <p>而在右邊的try it now 輸入 “我要頂級佛跳牆海景海鮮麵”</p>
 <p>就可以收到 “沒問題”</p>
 <hr>
 <p>目前api.ai的簡單設定到這邊，我們要先去line去開啟我們的機器人</p>
 <ul>
-<li>註冊好 line 頁面，點擊最右方 Messiaging API</li>
+<li>註冊好 line 頁面，點擊最右方 Messiaging API
+<div class="img">
+    <a class="img" href="./images/20170424/9.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/9.png" alt="20170424-9">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/9.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/9.png" alt="20170424-9">
-</a></p>
 <hr>
 <ul>
-<li>再點擊 開始使用 「 Messaging API 」</li>
+<li>再點擊 開始使用 「 Messaging API 」
+<div class="img">
+    <a class="img" href="./images/20170424/10.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/10.png" alt="20170424-10">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/10.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/10.png" alt="20170424-10">
-</a></p>
 <p>會跳出尚未選擇公司/經營者，點擊 「 選擇公司/經營者 」</p>
-<p><a class="img" href="./images/20170424/11.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/11.png" alt="20170424-11">
-</a></p>
+<div class="img">
+    <a class="img" href="./images/20170424/11.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/11.png" alt="20170424-11">
+    </a>
+</div>
+
 <hr>
 <ul>
 <li>這時就會導入 line messaging 的設定頁面</li>
 </ul>
-<p>在此頁面把姓名跟大頭照及業種選擇好，按下確定</p>
-<p><a class="img" href="./images/20170424/12.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/12.png" alt="20170424-12">
-</a></p>
-<p>再按下申請</p>
-<p><a class="img" href="./images/20170424/13.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/13.png" alt="20170424-13">
-</a></p>
-<p>耶～立即 前往line@manager囉</p>
-<p><a class="img" href="./images/20170424/14.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/14.png" alt="20170424-14">
-</a></p>
+<p>在此頁面把姓名跟大頭照及業種選擇好，按下確定
+<div class="img">
+    <a class="img" href="./images/20170424/12.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/12.png" alt="20170424-12">
+    </a>
+</div></p>
+<p>再按下申請
+<div class="img">
+    <a class="img" href="./images/20170424/13.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/13.png" alt="20170424-13">
+    </a>
+</div></p>
+<p>耶～立即 前往line@manager囉
+<div class="img">
+    <a class="img" href="./images/20170424/14.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/14.png" alt="20170424-14">
+    </a>
+</div></p>
 <hr>
 <ul>
-<li>在帳號設定 -&gt; Bot 設定 -&gt; 按下 開始使用 API</li>
+<li>在帳號設定 -&gt; Bot 設定 -&gt; 按下 開始使用 API
+<div class="img">
+    <a class="img" href="./images/20170424/15.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/15.png" alt="20170424-15">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/15.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/15.png" alt="20170424-15">
-</a></p>
-<p>華麗的按下確認</p>
-<p><a class="img" href="./images/20170424/16.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/16.png" alt="20170424-16">
-</a></p>
-<p>這時多出兩個 請求設定及詳細資訊</p>
-<p><a class="img" href="./images/20170424/17.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/17.png" alt="20170424-17">
-</a></p>
+<p>華麗的按下確認
+<div class="img">
+    <a class="img" href="./images/20170424/16.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/16.png" alt="20170424-16">
+    </a>
+</div></p>
+<p>這時多出兩個 請求設定及詳細資訊
+<div class="img">
+    <a class="img" href="./images/20170424/17.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/17.png" alt="20170424-17">
+    </a>
+</div></p>
 <p>webhook 傳訊打開為允許，接下來我們會用 Webhook url 來做 api.ai 及 line 的連結</p>
-<p>把自動回應更改為取消，要不然每次 api.ai 回應後，line這邊也會自動回應，就會收到兩封訊息</p>
-<p><a class="img" href="./images/20170424/18.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/18.png" alt="20170424-18">
-</a></p>
-<p>可以點擊上方用戶加入好友時的問候語旁的超連結做更改，更改完直接按儲存即可</p>
-<p><a class="img" href="./images/20170424/19.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/19.png" alt="20170424-19">
-</a></p>
+<p>把自動回應更改為取消，要不然每次 api.ai 回應後，line這邊也會自動回應，就會收到兩封訊息
+<div class="img">
+    <a class="img" href="./images/20170424/18.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/18.png" alt="20170424-18">
+    </a>
+</div></p>
+<p>可以點擊上方用戶加入好友時的問候語旁的超連結做更改，更改完直接按儲存即可
+<div class="img">
+    <a class="img" href="./images/20170424/19.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/19.png" alt="20170424-19">
+    </a>
+</div></p>
 <hr>
-<ul>
-<li>回到 bot設定，上方狀態旁有開啟 LINE Developers 點擊連結跳轉
-<a class="img" href="./images/20170424/20.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/20.png" alt="20170424-20">
-</a></li>
-</ul>
+<div class="img">- 回到 bot設定，上方狀態旁有開啟 LINE Developers 點擊連結跳轉
+    <a class="img" href="./images/20170424/20.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/20.png" alt="20170424-20">
+    </a>
+</div>
+
 <p>我們需要三個資訊 <code>Channel ID</code> 、 <code>Channel Secret</code>以及最下方的<code>Channel action token</code></p>
-<p>ps.這邊的qrcode就是我機器人的qrcode歐，可以掃描加入好友，只是目前只會回加入好友問候語而已</p>
-<p><a class="img" href="./images/20170424/21.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/21.png" alt="20170424-21">
-</a></p>
-<p><a class="img" href="./images/20170424/22.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/22.png" alt="20170424-22">
-</a></p>
+<p>ps.這邊的qrcode就是我機器人的qrcode歐，可以掃描加入好友，只是目前只會回加入好友問候語而已
+<div class="img">
+    <a class="img" href="./images/20170424/21.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/21.png" alt="20170424-21">
+    </a>
+<div c
+lass="img</div>"&gt;
+    <a class="img" href="./images/20170424/22.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/22.png" alt="20170424-22">
+    </a>
+</div></p>
 <hr>
-<ul>
-<li>回到 api.ai，點擊 Integrations 把 line 的 button 打開
-<a class="img" href="./images/20170424/23.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/23.png" alt="20170424-23">
-</a></li>
-</ul>
+<div class="img">- 回到 api.ai，點擊 Integrations 把 line 的 button 打開
+    <a class="img" href="./images/20170424/23.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/23.png" alt="20170424-23">
+    </a>
+</div>
+
 <p>會跳出一個視窗，把我們剛剛找到的<code>Channel ID</code> 、 <code>Channel Secret</code> 、 <code>Channel action token</code>三個資訊貼上去，按下start</p>
-<p>複製 Webhook URL 裡的資訊</p>
-<p><a class="img" href="./images/20170424/24.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/24.png" alt="20170424-24">
-</a></p>
+<p>複製 Webhook URL 裡的資訊
+<div class="img">
+    <a class="img" href="./images/20170424/24.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/24.png" alt="20170424-24">
+    </a>
+</div></p>
 <hr>
 <ul>
-<li>回到 line developers ， 按下 Edit 把剛剛的複製的資訊貼進去 Webhook URL</li>
+<li>回到 line developers ， 按下 Edit 把剛剛的複製的資訊貼進去 Webhook URL
+<div class="img">
+    <a class="img" href="./images/20170424/25.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/25.png" alt="20170424-25">
+    </a>
+</div></li>
 </ul>
-<p><a class="img" href="./images/20170424/25.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/25.png" alt="20170424-25">
-</a></p>
 <p>好拉，我們的line機器人應該大功告成了</p>
 <hr>
-<ul>
-<li>打開剛剛掃描加入好友的機器人
-<a class="img" href="./images/20170424/2.png" data-lightbox="image-1" data-title="">
-        <img src="./images/20170424/26.jpg" alt="20170424-26">
-</a></li>
-</ul>
+<div class="img">- 打開剛剛掃描加入好友的機器人
+    <a class="img" href="./images/20170424/2.png" data-lightbox="image-1" data-title="">
+            <img src="./images/20170424/26.jpg" alt="20170424-26">
+    </a>
+</div>
+
 <hr>
-<p>可以掃描下方 qrcode 或按下 加入好友 跟 Dana 機器人聊天</p>
-<p><a class="img" href="./images/20170424/2.png" data-lightbox="image-1" data-title="">
-        <img src="http://qr-official.line.me/L/B9REXhh8cn.png">
-</a></p>
-<p><a class="img">
- href="./images/20170424/1.png" data-lightbox="image-1" data-title=""       <a href="https://line.me/R/ti/p/%40lrn5312e"><img height="36" border="0" alt="加入好友" a="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+<p>可以掃描下方 qrcode 或按下 加入好友 跟 Dana 機器人聊天
+<div class="img">
+    <a class="img" href="./images/20170424/2.png" data-lightbox="image-1" data-title="">
+            <img src="http://qr-official.line.me/L/B9REXhh8cn.png">
+    </a>
+<div c
+lass="img</div>"&gt;
+    <a class="img">
+    href="./images/20170424/1.png" data-lightbox="image-1" data-title=""        <a href="https://line.me/R/ti/p/%40lrn5312e"><img height="36" border="0" alt="加入好友" a="https://scd</div
+    >n.line-apps.com/n/line_add_friends/btn/zh-Hant.png"&gt;</a>
 </div></p>
 <blockquote>
 <p>Dana 機器人還很笨，只會講垃圾話</p>
