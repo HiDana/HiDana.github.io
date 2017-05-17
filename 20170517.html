@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>Deploy react on github - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+
+		<link href="./theme/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+
+		
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+                <div class="avatarImg">
+                  <a href="/" title="See posts by Dana">
+                      <img class="avatar" alt="Dana" src="./images/theme/author2.jpg">
+                  </a>
+                </div>
+
+                <h2 class="article-info">Dana Chen</h2>
+                <!-- <small class="about-author"></small> -->
+                <small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+                <h5>Published</h5>
+                <!-- <p>三 17 5月 2017</p> -->
+                <p>2017 05 17</p>
+                <a href="/">&larr; Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Deploy react on github</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/code.html">code</a>
+                                <a class="post-category" href="./tag/react.html">react</a>
+                                <a class="post-category" href="./tag/github.html">github</a>
+                        </p>
+                </header>
+            </section>
+            <p>寫完react就想要部署在一個有網址的地方</p>
+<p>因為此部署是建立在 create react app 上的，所以先確認電腦有 create-react-app 的指令</p>
+<div class="highlight"><pre><span></span>$ npm install -g create-react-app 
+$ create-react-app &lt;project name&gt;
+$ <span class="nb">cd</span> &lt;project name&gt;
+</pre></div>
+
+
+<p>在package.json檔裡加入</p>
+<div class="highlight"><pre><span></span>&quot;homepage&quot;: &quot;https://&lt;github-username&gt;.github.io/&lt;project-repo&gt;&quot;
+</pre></div>
+
+
+<p>比如說我的GitHub username - hidana 放在一個叫做 create-react-app-GitHubDeploy 的 repository 裡，就會長這樣</p>
+<div class="highlight"><pre><span></span>&quot;homepage&quot;: &quot;https://hidana.github.io/create-react-app-GitHubDeploy&quot;
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>#package.json
+{
+  &quot;name&quot;: &quot;deploygithub&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;private&quot;: true,
+  &quot;homepage&quot;: &quot;https://hidana.github.io/create-react-app-GitHubDeploy&quot;, #add this
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^15.5.4&quot;,
+    &quot;react-dom&quot;: &quot;^15.5.4&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;react-scripts&quot;: &quot;0.9.5&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts start&quot;,
+    &quot;build&quot;: &quot;react-scripts build&quot;,
+    &quot;test&quot;: &quot;react-scripts test --env=jsdom&quot;,
+    &quot;eject&quot;: &quot;react-scripts eject&quot;
+  }
+}
+</pre></div>
+
+
+<p>如果此時下</p>
+<div class="highlight"><pre><span></span>$ npm run build
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20170517/1.png" data-lightbox="image-1" data-title="My caption">
+            <img src="./images/20170517/1.png" alt="20170517-1">
+    </a>
+</div>
+
+<p>就會出現建議你要安裝 <code>gh-pages</code></p>
+<div class="highlight"><pre><span></span>$ npm install --save-dev gh-pages
+</pre></div>
+
+
+<p>並在 package.json 的 scripts 加入</p>
+<div class="highlight"><pre><span></span>&quot;scripts&quot;: {
+    // ...
+    &quot;predeploy&quot;: &quot;npm run build&quot;,
+    &quot;deploy&quot;: &quot;gh-pages -d build&quot;
+  }
+</pre></div>
+
+
+<h1>切記！！！</h1>
+<p>在 deploy 之前 一定要先 commit！！！因為deploy會自動部署在github上</p>
+<div class="highlight"><pre><span></span>$ git init
+$ git add .
+$ git commit -m <span class="s2">&quot;deploy create react app on github&quot;</span>
+$ git remote add origin https://github.com/HiDana/create-react-app-GitHubDeploy.git
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20170517/2.png" data-lightbox="image-1" data-title="My caption">
+            <img src="./images/20170517/2.png" alt="20170517-2">
+    </a>
+</div>
+
+<p>然後再下</p>
+<div class="highlight"><pre><span></span>$ npm run deploy
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20170517/3.png" data-lightbox="image-1" data-title="My caption">
+            <img src="./images/20170517/3.png" alt="20170517-3">
+    </a>
+</div>
+
+<p>可以看到github上面已經部署build的檔案了</p>
+<div class="img">
+    <a href="./images/20170517/4.png" data-lightbox="image-1" data-title="My caption">
+            <img src="./images/20170517/4.png" alt="20170517-4">
+    </a>
+</div>
+
+<p>到setting上看到他已經自動部署在  http://hidana.github.io/create-react-app-GitHubDeploy/</p>
+<div class="img">
+    <a href="./images/20170517/5.png" data-lightbox="image-1" data-title="因為我github.io有自動導到hidana.me，所以呈現不一樣">
+            <img src="./images/20170517/5.png" alt="20170517-5">
+    </a>
+</div>
+
+<div class="highlight"><pre><span></span>#final package.json
+{
+  &quot;name&quot;: &quot;deploygithub&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;private&quot;: true,
+  &quot;homepage&quot;: &quot;https://hidana.github.io/create-react-app-GitHubDeploy&quot;,
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^15.5.4&quot;,
+    &quot;react-dom&quot;: &quot;^15.5.4&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;gh-pages&quot;: &quot;^1.0.0&quot;,
+    &quot;react-scripts&quot;: &quot;0.9.5&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts start&quot;,
+    &quot;build&quot;: &quot;react-scripts build&quot;,
+    &quot;test&quot;: &quot;react-scripts test --env=jsdom&quot;,
+    &quot;eject&quot;: &quot;react-scripts eject&quot;,
+    &quot;predeploy&quot;: &quot;npm run build&quot;,
+    &quot;deploy&quot;: &quot;gh-pages -d build&quot;
+  }
+}
+</pre></div>
+            <div class="hr"></div>
+            <a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built by Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="./theme/lightbox2/dist/js/lightbox.min.js"></script>
