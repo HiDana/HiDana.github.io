@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>當圖片碰到頂端時... - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+
+		<link href="./theme/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+
+		
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+                <div class="avatarImg">
+                  <a href="/" title="See posts by Dana">
+                      <img class="avatar" alt="Dana" src="./images/theme/author2.jpg">
+                  </a>
+                </div>
+
+                <h2 class="article-info">Dana Chen</h2>
+                <!-- <small class="about-author"></small> -->
+                <small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+                <h5>Published</h5>
+                <!-- <p>一 27 11月 2017</p> -->
+                <p>2017 11 27</p>
+                <a href="/">&larr; Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>當圖片碰到頂端時...</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/code.html">code</a>
+                                <a class="post-category" href="./tag/js.html">js</a>
+                                <a class="post-category" href="./tag/scroll.html">scroll</a>
+                        </p>
+                </header>
+            </section>
+            <p>當圖片置頂時，會自動 fixed 著，然後內文就會滾動覆蓋上去</p>
+<p>如下 codepen</p>
+<p data-height="420" data-theme-id="0" data-slug-hash="mqGaqj" data-default-tab="result" data-user="DanaChen" data-embed-version="2" data-pen-title="img scroll top fixed" class="codepen">See the Pen <a href="https://codepen.io/DanaChen/pen/mqGaqj/">img scroll top fixed</a> by Dana (<a href="https://codepen.io/DanaChen">@DanaChen</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>這邊要注意兩種狀態</p>
+<ol>
+<li>該區塊的圖片碰到頂端要 fixed</li>
+<li>回拉時，圖片要回到原本的位置</li>
+</ol>
+<h4>針對第一個狀態，會做三個步驟</h4>
+<ul>
+<li>
+<p>監聽該 img 在整個頁面的位置</p>
+</li>
+<li>
+<p>設定 imgGap 為當位置與頁面滾動相減 = 0</p>
+</li>
+<li>
+<p>當 imgGap &lt; 0 時圖片會 fixed 住</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>    const imgs = document.getElementsByClassName(&#39;Img&#39;);
+
+    window.addEventListener(&#39;scroll&#39;, function () {
+        for (let i = 0; i &lt; imgs.length; i++) {
+            const img = imgs[i];
+
+            let imgGap = img.offsetTop - window.scrollY;
+
+            if (imgGap &lt; 0) {
+                img.style.position = &quot;fixed&quot;;
+            }
+        }
+
+    });
+</pre></div>
+
+
+<p>很好，我們已經完成當圖片碰到頂端要 fixed 著的過程了</p>
+<p>-</p>
+<h4>接下來是第二步驟 - 回拉時，圖片要回到原本的位置</h4>
+<p>針對第二個狀態，會做個步驟</p>
+<ul>
+<li>
+<p>監聽該 header 在整個頁面的位置</p>
+</li>
+<li>
+<p>設定 headerGap 為當位置與頁面滾動相減 &gt; -40
+        因為 header 高度為 40 ，如果沒有設定 &gt; -40 會突然急跳</p>
+</li>
+<li>
+<p>當 headerGap &gt; -40 時圖片會回復成 static</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>    const headers = document.getElementsByClassName(&#39;art_header&#39;);
+    const imgs = document.getElementsByClassName(&#39;Img&#39;);
+
+    window.addEventListener(&#39;scroll&#39;, function () {
+        for (let i = 0; i &lt; imgs.length; i++) {
+            const img = imgs[i];
+            const header = headers[i];
+
+            let imgGap = img.offsetTop - window.scrollY;
+            let headerGap = header.offsetTop - window.scrollY;
+            console.log(&#39;headerGap&#39;, headerGap)
+            if (imgGap &lt; 0) {
+                img.style.position = &quot;fixed&quot;;
+            }
+            if (headerGap &gt; -40) {
+                img.style.position = &quot;static&quot;;
+            }
+        }
+
+    });
+</pre></div>
+
+
+<p>恩恩，看起來很複雜，其實拆解下來不難呢～</p>
+<hr>
+<h3>小記</h3>
+<p>說實話挺對不起朋友的，當初說好月底給他</p>
+<p>結果太忙了，原本年中變成年尾才給 Ｏrz</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built by Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="./theme/lightbox2/dist/js/lightbox.min.js"></script>
