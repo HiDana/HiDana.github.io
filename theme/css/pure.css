@@ -136,15 +136,15 @@ hr {
     text-decoration: none;
     margin-left: 15px;
     font-size: 25px;
-    /*color: #fff;*/
-    color: #3f85a3;
+    color: #fff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);*/
     font-family: "freight-sans-pro", "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-}
-
-.brand-main a:hover {
-    color: #003f66;
+	}
+	
+	.brand-main a:hover {
+		color: #3f85a3;
+    /* color: #003f66; */
     transition: .2s;
 }
 
@@ -154,8 +154,8 @@ hr {
     line-height: 15px;
     font-size: 80%;
     /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);*/
-    /*color: #fff;*/
-    color: #3f85a3;
+    color: #fff;
+    /* color: #3f85a3; */
 }
 
 .social {
@@ -166,14 +166,15 @@ hr {
     text-decoration: none;
     margin-left: 15px;
     /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);*/
-    /*color: #fff;*/
-    color: #B2D2DA;
+    color: #fff;
+    
     transition: .2s;
     font-size: 80%;
 }
 
 .social a:hover {
-    color: #003f66;
+		color: #B2D2DA;
+    /* color: #003f66; */
     transition: .2s;
 }
 
@@ -184,13 +185,13 @@ hr {
     letter-spacing: 2px;
     /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);*/
     text-decoration: none;
-    /*color: #fff;*/
-    color: #B2D2DA;
+    color: #fff;
     transition: .2s;
-}
-
-.links a:hover {
-    color: #003f66;
+	}
+	
+	.links a:hover {
+		color: #B2D2DA;
+    /* color: #003f66; */
     transition: .2s;
 }
 
