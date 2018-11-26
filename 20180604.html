@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>expo FB login - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+
+		<link href="./theme/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+
+		
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+                <div class="avatarImg">
+                  <a href="/" title="See posts by Dana">
+                      <img class="avatar" alt="Dana" src="./images/theme/author2.jpg">
+                  </a>
+                </div>
+
+                <h2 class="article-info">Dana Chen</h2>
+                <!-- <small class="about-author"></small> -->
+                <small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+                <h5>Published</h5>
+                <!-- <p>一 04 6月 2018</p> -->
+                <p>2018 06 04</p>
+                <a href="/">&larr; Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>expo FB login</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/code.html">code</a>
+                                <a class="post-category" href="./tag/js.html">js</a>
+                                <a class="post-category" href="./tag/rn.html">RN</a>
+                        </p>
+                </header>
+            </section>
+            <p>公司最近有 app 的需求，想再工作量還沒下來前，趕緊把整套流程摸熟</p>
+<p>因此就讓自己做了一個小專案</p>
+<p>預計會用 react-native 寫 app 用 node 做 server 然後再放到 aws 上</p>
+<p>但是 apple developer 的帳號遲遲沒有下來ＱＱ
+這又是一個艱酸的故事了</p>
+<p>fb login 在 react-native 其實有很多方法
+試了很多種，後來發現本身 expo 就有 fb login 的接口</p>
+<p>只能說 expo 比一年前我使用上，又更強大了</p>
+<p>-</p>
+<p>首先到 <a href="design@herbmagic.cloud">fb 的開發者平台</a></p>
+<p>點擊右上角 我的應用程式</p>
+<div class="img">
+    <a href="./images/20180605/1.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/1.png" alt="20180605-1">
+    </a>
+</div>
+
+<p>建立一個新的 fb 應用程式
+<div class="img">
+    <a href="./images/20180605/2.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/2.png" alt="20180605-2">
+    </a>
+</div></p>
+<p>進到主控版，點擊右側 基本資料
+<div class="img">
+    <a href="./images/20180605/3.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/3.png" alt="20180605-3">
+    </a>
+</div></p>
+<p>滑到最下面後，點擊 新增平台
+<div class="img">
+    <a href="./images/20180605/4.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/4.png" alt="20180605-4">
+    </a>
+</div></p>
+<p>選擇 ios
+<div class="img">
+    <a href="./images/20180605/5.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/5.png" alt="20180605-5">
+    </a>
+</div></p>
+<ul>
+<li>Add host.exp.Exponent as an iOS Bundle ID. Add rRW++LUjmZZ+58EbN5DVhGAnkX4= as an Android key hash. Your app's settings should end up including the following under "Settings &gt; Basic"</li>
+</ul>
+<p>所以把 host.exp.Exponent 輸入到 套件組合編號
+<div class="img">
+    <a href="./images/20180605/6.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/6.png" alt="20180605-6">
+    </a>
+</div>
+<div class="img">
+    <a href="./images/20180605/7.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/7.png" alt="20180605-7">
+    </a>
+</div></p>
+<p>iOS standalone app</p>
+<ul>
+<li>
+<p>Add your app's Bundle ID as a Bundle ID in app's settings page pictured above.</p>
+</li>
+<li>
+<p>In your app.json, add a field <code>facebookScheme</code> with your Facebook login redirect URL scheme found here under 4. Configure Your info.plist. It should look like <code>"fb123456"</code>.</p>
+</li>
+<li>
+<p>Also in your app.json, add your Facebook App ID and Facebook Display Name under the <code>facebookAppId</code> and <code>facebookDisplayName</code> keys.</p>
+</li>
+</ul>
+<p><a href="https://developers.facebook.com/docs/facebook-login/ios/">iOS 專用 Facebook 登入 - 快速入門</a></p>
+<p>找到編碼，其實編碼就是本身的 應用程式編號，前面再加上 fb 兩字
+<div class="img">
+    <a href="./images/20180605/8.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/8.png" alt="20180605-8">
+    </a>
+</div></p>
+<p>在 app.json 裡貼上</p>
+<div class="highlight"><pre><span></span>{
+    &quot;expo&quot;: {
+        &quot;sdkVersion&quot;: &quot;27.0.0&quot;,
+        &quot;facebookScheme&quot;: &quot;fb1742523045835972&quot;
+    }
+}
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20180605/9.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/9.png" alt="20180605-9">
+    </a>
+</div>
+
+<p>然後把這段程式碼貼到你的登入頁面</p>
+<div class="highlight"><pre><span></span>async logInFB() {
+    const {
+      type,
+      token
+    } = await Expo.Facebook.logInWithReadPermissionsAsync(&quot;<span class="nt">&lt;APP</span><span class="err">_ID</span><span class="nt">&gt;</span>&quot;, {
+      permissions: [&quot;public_profile&quot;]
+    });
+    if (type === &quot;success&quot;) {
+      // Get the user&#39;s name using Facebook&#39;s Graph API
+      const response = await fetch(
+        `https://graph.facebook.com/me?access_token=<span class="cp">${</span><span class="n">token</span><span class="cp">}</span>`
+      );
+      Alert.alert(&quot;Logged in!&quot;, `Hi <span class="cp">${</span><span class="p">(</span><span class="n">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span><span class="o">.</span><span class="n">name</span><span class="cp">}</span>!`);
+    }
+  }
+</pre></div>
+
+
+<p>APP_ID 就是你的應用程式編碼
+<div class="img">
+    <a href="./images/20180605/10.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/10.png" alt="20180605-10">
+    </a>
+</div></p>
+<p>新增一個 btn 去觸發上面 fun 的程式碼</p>
+<div class="highlight"><pre><span></span>&lt;Button onPress={this.logInFB.bind(this)} title=&quot;connect with fb&quot; /&gt;
+</pre></div>
+
+
+<div class="img">
+<a href="./images/20180605/11.png" data-lightbox="image-1" data-title="My caption" style="flex: 1;">
+        <img src="./images/20180605/11.png" alt="20180605-11">
+    </a>
+<a href="./images/20180605/12.png" data-lightbox="image-1" data-title="My caption" style="flex: 1;">
+        <img src="./images/20180605/12.png" alt="20180605-12">
+    </a>
+<a href="./images/20180605/13.png" data-lightbox="image-1" data-title="My caption" style="flex: 1;">
+        <img src="./images/20180605/13.png" alt="20180605-13">
+    </a>
+</div>
+
+<div class="img">
+    <a href="./images/20180605/14.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20180605/14.png" alt="20180605-14">
+    </a>
+</div>
+
+<p>這邊只是單方面測試自己的帳戶可否使用 fb login 功能</p>
+<p>所以拿給其他人使用會說該應用在測試中之類的無法使用歐</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built by Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="./theme/lightbox2/dist/js/lightbox.min.js"></script>

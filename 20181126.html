@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>Line chatBot with node - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+
+		<link href="./theme/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+
+		
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+                <div class="avatarImg">
+                  <a href="/" title="See posts by Dana">
+                      <img class="avatar" alt="Dana" src="./images/theme/author2.jpg">
+                  </a>
+                </div>
+
+                <h2 class="article-info">Dana Chen</h2>
+                <!-- <small class="about-author"></small> -->
+                <small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+                <h5>Published</h5>
+                <!-- <p>一 26 11月 2018</p> -->
+                <p>2018 11 26</p>
+                <a href="/">&larr; Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Line chatBot with node</h1>
+                        <p class="post-meta">
+                                <a class="post-category" href="./tag/code.html">code</a>
+                                <a class="post-category" href="./tag/js.html">js</a>
+                                <a class="post-category" href="./tag/node.html">node</a>
+                                <a class="post-category" href="./tag/chatbot.html">chatbot</a>
+                        </p>
+                </header>
+            </section>
+            <p>繼上次 <a href="http://blog.hidana.me/20170424.html">api.ai 與 line 的甜蜜辛酸史</a> 製作 line chatBot 後，一直很想自己寫個 server 做串接</p>
+<p>好吧，廢話不多說，我們直接開始吧！！</p>
+<p>首先，先至 <a href="https://developers.line.biz/en/">line developer</a> 開啟一個 line 帳號</p>
+<div class="img">
+    <a href="./images/20181126/1.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/1.png" alt="20181126-1">
+    </a>
+</div>
+
+<p>新增一個 messaging API</p>
+<div class="img">
+    <a href="./images/20181126/2.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/2.png" alt="20181126-2">
+    </a>
+</div>
+
+<div class="img">
+    <a href="./images/20181126/3.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/3.png" alt="20181126-3">
+    </a>
+</div>
+
+<p>裡面有些設定需要注意</p>
+<ul>
+<li>關掉 Auto-reply messages ，要不每次使用者輸入訊息，就會自動回覆一長串字串</li>
+</ul>
+<div class="img">
+    <a href="./images/20181126/4.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/4.png" alt="20181126-4">
+    </a>
+</div>
+
+<ul>
+<li>Channel ID</li>
+<li>Channel secret</li>
+<li>Channel access token (long-lived)</li>
+</ul>
+<p>要注意這三個資訊是等等要寫進 node 裡面的資訊</p>
+<div class="img">
+    <a href="./images/20181126/5.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/5.png" alt="20181126-5">
+    </a>
+</div>
+
+<div class="img">
+    <a href="./images/20181126/6.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/6.png" alt="20181126-6">
+    </a>
+</div>
+
+<p>token 下方的 webhook 就是我們 server 跟 line chatBot 連接的地方</p>
+<p>好啦，我們開始寫 node 吧！！</p>
+<p>init 一個 node 的資料夾</p>
+<div class="highlight"><pre><span></span>$npm init
+</pre></div>
+
+
+<p>安裝 SDK for the LINE Messaging API for Node.js</p>
+<p><a href="https://github.com/boybundit/linebot">linebot</a> package</p>
+<div class="highlight"><pre><span></span>$npm install linebot --save
+</pre></div>
+
+
+<p>建立 app.js</p>
+<p>這時上方 三個 (Channel ID 、 Channel secret 、 Channel access token) 資訊就可以填進去了</p>
+<div class="highlight"><pre><span></span>var linebot = require(&#39;linebot&#39;);
+
+// 用於辨識Line Channel的資訊
+var bot = linebot({
+  channelId: &#39;你的 Channel ID&#39;,
+  channelSecret: &#39;你的 Channel secret&#39;,
+  channelAccessToken: &#39;你的 Channel access token&#39;
+});
+// 當有訊息傳給 chatBot 時
+bot.on(&#39;message&#39;, function (event) {
+  // event.message.text 是傳給bot的訊息
+  // event.reply(要回傳的訊息) 可將訊息回傳給使用者
+    // 所以這邊是 replay 原來的文字
+  event.reply(event.message.text).then(function (data) {
+    // if msg response success
+  }).catch(function (error) {
+    // if msg response fail
+  });
+});
+
+// 監聽的 webhook 的路徑與 port 號
+bot.listen(&#39;/linewebhook&#39;, 3000, function () {
+    console.log(&#39;[BOT is ready]&#39;);
+});
+</pre></div>
+
+
+<p>如果這時 起 node</p>
+<div class="highlight"><pre><span></span>$node app.js
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20181126/8.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/8.png" alt="20181126-8">
+    </a>
+</div>
+
+<p>會知道我們的 路徑在 locakhost:3000/linewebhook</p>
+<p>localhost 是本地端</p>
+<p>但是 line 在雲端，所以 我們必須要用 <a href="https://ngrok.com">ngrok</a> 做跳板</p>
+<div class="img">
+    <a href="./images/20181126/7.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/7.png" alt="20181126-7">
+    </a>
+</div>
+
+<ul>
+<li>下載 ngrok</li>
+<li>放在 我們的主資料夾底下</li>
+<li>連接 ngrok 的 authtoken</li>
+<li>啟用 ngrok</li>
+</ul>
+<p>ngrok 有免費版跟付費版，最大差別就是在付費版會有固定 ip 而免費版沒有</p>
+<div class="highlight"><pre><span></span>./ngrok http 3000
+</pre></div>
+
+
+<p>這邊 3000 是我們剛剛在 node 給的 3000 port</p>
+<p>ngrok 產生了一組 ip(a03d3bbf.ngrok.io) 對應到 localhost:3000</p>
+<div class="img">
+    <a href="./images/20181126/9.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/9.png" alt="20181126-9">
+    </a>
+</div>
+
+<p>把 ngrok 產生的 ip 填寫至 line developer 的 chatbot 設定檔 webhook 裡面</p>
+<div class="img">
+    <a href="./images/20181126/10.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/10.png" alt="20181126-10">
+    </a>
+</div>
+
+<p>沒錯，所以當你 關掉本地 node 或 ngrok 後， chatBot 就會停止服務</p>
+<p>重啟 ngrok 後 因為沒有付費，所以 Ip 會換掉，這時 line chatbot 的 webhook 也要更改為新的 ip</p>
+<p>好啦，連接後，你就會發現你的 chatbot 跟 學舌鳥一樣，會重複你的話了</p>
+<p>這邊上面是被動教學</p>
+<p>--</p>
+<p>接下來是主動推播教學</p>
+<p>關於 本地 localhost:3000 跟 遠端 line chatbot 連接都是一樣的</p>
+<p>用 <a href="https://github.com/remy/nodemon">nodemon</a> 起 app.js 可以動態變動程式碼不用另外關掉或重啟</p>
+<div class="highlight"><pre><span></span>$nodemon app.js
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20181126/12.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/12.png" alt="20181126-12">
+    </a>
+</div>
+
+<p>所以主動推播就是改 app.js 裡面的程式碼就好</p>
+<div class="highlight"><pre><span></span>bot.push(userId, [sendMsg]);
+</pre></div>
+
+
+<ul>
+<li>userId : 用戶的 id</li>
+<li>sendMsg : 推播的訊息</li>
+</ul>
+<p>userId 可以從這邊拿到</p>
+<div class="highlight"><pre><span></span>// 當有人傳送訊息給Bot時
+bot.on(&quot;message&quot;, function(event) {
+  //回傳使用者 名字
+  event.source.profile().then(function(profile) {
+    event.reply(&quot;Hello &quot; + profile.displayName);
+  });
+});
+</pre></div>
+
+
+<div class="img">
+    <a href="./images/20181126/11.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/11.png" alt="20181126-11">
+    </a>
+</div>
+
+<p>好，我們有 userId 跟要填入的資訊了，可以主動推播囉</p>
+<div class="highlight"><pre><span></span>const userId = &quot;剛剛拿到的 userId&quot;;
+
+let replyInfo;
+
+request(&quot;https://tw.rter.info/capi.php&quot;, function(error, res, body) {
+  const USDTWD = JSON.parse(res.body).USDTWD.Exrate; //美金轉台幣
+  const USDJPY = JSON.parse(res.body).USDJPY.Exrate; //美金轉日圓
+  const USDCNY = JSON.parse(res.body).USDCNY.Exrate; //美金轉人民幣
+  const USDCAD = JSON.parse(res.body).USDCAD.Exrate; //美金轉加幣
+
+  replyInfos = [
+    { title: &quot;人民幣 轉 台幣&quot;, ext: (USDTWD / USDCNY).toFixed(4) },
+    { title: &quot;日幣 轉 台幣&quot;, ext: (USDTWD / USDJPY).toFixed(4) },
+    { title: &quot;加幣 轉 台幣&quot;, ext: (USDTWD / USDCAD).toFixed(4) }
+  ];
+
+  let sendMsg = replyInfos.map(info =&gt; `<span class="cp">${</span><span class="n">info</span><span class="o">.</span><span class="n">title</span><span class="cp">}</span> <span class="cp">${</span><span class="n">info</span><span class="o">.</span><span class="n">ext</span><span class="cp">}</span>`).join(&quot;\n&quot;);
+  bot.push(userId, [sendMsg]);
+});
+</pre></div>
+
+
+<p>換行的話， chatbot 吃的是 "\n" 這邊要注意</p>
+<div class="img">
+    <a href="./images/20181126/13.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20181126/13.png" alt="20181126-13">
+    </a>
+</div>
+
+<p>看到這邊 可以知道我其實是想要做匯率推播的</p>
+<p>每次都錯失買賣外匯的好時機，因此希望 line 可以每天固定時間主動推播我匯率，也可以設定當我希望匯率多少以上或以下時，他在推播我訊息</p>
+<p>匯率 資料來源是 <a href="https://tw.rter.info/howto_currencyapi.php">全球即時匯率API</a></p>
+<p>而固定時間推播預計是用 <a href="https://github.com/node-schedule/node-schedule">node-schedule</a></p>
+<p>在本地測試好後，程式碼其實可以放在 heroku 上面，但因為害怕每天固定時間推播是不是會 很吃流量，把 heroku 每月免費的額度用完，所以還是要測試後才會公開給大家玩玩歐～</p>
+<hr>
+<p>參考文章</p>
+<p><a href="https://developers.line.me/en/docs/messaging-api/overview">Developer Documents</a></p>
+<p><a href="https://developers.line.me/en/docs/messaging-api/reference">API Reference</a></p>
+<p><a href="https://developers.line.biz/en/reference/messaging-api/#webhooks">Webhooks event</a></p>
+<p><a href="https://medium.com/pyradise/使用node-js建置你的第一個line-bot-590b7ba7a28a">使用Node.js建置你的第一個LINE BOT</a></p>
+<p><a href="https://codefun.tw/2017/06/02/2017060201-nodejs-line-bot-p1/">在本地端使用 Nodejs &amp; Ngrok 進行 Line Bot 開發測試</a></p>
+<p><a href="https://stackoverflow.com/questions/38100495/facebook-messenger-apihow-to-break-line-in-a-message">Facebook Messenger API:how to break line in a message</a></p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built by Dana
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="./theme/lightbox2/dist/js/lightbox.min.js"></script>
