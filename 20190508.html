@@ -86,7 +86,7 @@
 </div>
 
 <p><em>注意</em>
-有些網路上會說 ~~透過 Google Sheet API 拿回來的資料預設會帶有 CORS Header，所以不受跨 domain 存取限制，很方便吧！~~</p>
+有些網路上會說 <s>透過 Google Sheet API 拿回來的資料預設會帶有 CORS Header，所以不受跨 domain 存取限制，很方便吧！</s></p>
 <p>但僅限於舊版 google sheet 能這樣做，現在的版本都不行了</p>
 <div class="highlight"><pre><span></span>I&#39;ve confirmed that this is a bug in the Drive API, but it is only affecting the exportLinks for New Google Sheets file. Old Google Sheets and other Google file types should work correctly. I&#39;ve raised it with the team, but it&#39;s unclear how long it will take to fix. Unfortunately there are no simple workarounds, and the only solution would be to introduce a server-side component that would download the file and then pass it along to the client.
 </pre></div>
@@ -105,7 +105,7 @@
     </a>
 </div>
 
-<p>完成 sheet 的編輯後，在雲端硬碟新增一個 google script app，如果沒有就點擊 更多… 尋找</p>
+<p>完成 sheet 的編輯後，在雲端硬碟新增一個 google app script，如果沒有就點擊 更多… 尋找</p>
 <p><em>用 google app script 不用 "發佈到網路"</em></p>
 <div class="img">
     <a href="./images/20190508/2.png" data-lightbox="image-1" data-title="My caption">
