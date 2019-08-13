@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dana, / Front End Engineer's Mid-Night Kitchen">
+
+
+        <title>React-router 在 github page 的問題 - Dana  / Front End Engineer's Mid-Night Kitchen</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/my.css">
+
+		<link href="./theme/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$(".content").fitVids();
+	});
+</script>
+
+		
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+	<div class="sidebar sidebar-article pure-u">
+		<header class="header-article">
+			<hgroup>
+				<!-- <a href="./author/dana.html" title="See posts by Dana">
+                </a> -->
+				<div class="avatarImg">
+					<a href="/" title="See posts by Dana">
+						<img class="avatar" alt="Dana" src="./images/theme/author3.jpg">
+					</a>
+				</div>
+
+				<h2 class="article-info">Dana Chen</h2>
+				<!-- <small class="about-author"></small> -->
+				<small class="about-author">Coding, Baking<br>Front End Engineer's Mid-Night Kitchen</small>
+				<h5>Published</h5>
+				<!-- <p>Tue, 13 Aug 2019</p> -->
+				<p>2019 08 13</p>
+				<a href="/">&larr; Home</a>
+			</hgroup>
+		</header>
+	</div>
+	<div class="pure-u">
+		<div class="content">
+			<section class="post">
+				<header class="post-header">
+					<h1>React-router 在 github page 的問題</h1>
+					<p class="post-meta">
+						<a class="post-category" href="./tag/code.html">code</a>
+						<a class="post-category" href="./tag/js.html">js</a>
+						<a class="post-category" href="./tag/react.html">react</a>
+						<a class="post-category" href="./tag/react-router.html">react-router</a>
+						<a class="post-category" href="./tag/github.html">github</a>
+						<a class="post-category" href="./tag/githubpage.html">githubPage</a>
+					</p>
+				</header>
+			</section>
+			<p>最近想把 react 網頁部署在 github page 上，去遇到了在子頁面重新 refresh 會有 404 的問題</p>
+<div class="img">
+    <a href="./images/20190813/1.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20190813/1.png" alt="20190813-1">
+    </a>
+</div>
+
+<p>在這邊先了解一下 react-router 的運作方式</p>
+<div class="highlight"><pre><span></span>訪問 test.hidana.me → 跟 server 要東西 → 獲得 index.html → 點擊某個換頁按鈕 -&gt; 運行 js 做頁面轉換(CCR) → 換置頁面到 test.hidana.me/secFloor
+</pre></div>
+
+
+<p>我們頁面換置到 test.hidana.me/secFloor 是在 client-side 自己使用的，沒有刷新頁面，因此完全沒有訪問到 server</p>
+<p>但當我們在 <code>test.hidana.me/secFloor</code> refresh 或是把這網址另外開始窗訪問，但 server 完全不認識這東西，因此這網頁沒有 react-router 的 js ，所以就會是 404</p>
+<p>網路上有很多解法，有 client 端解，也有從 server 端解，這邊主要提如何用前端簡單的處理這問題</p>
+<h2>用 Hash History</h2>
+<p>當訪問時 讓網址呈現 test.hidana.me/#/secFloor 這樣在跟 server 請求時，就只會用 test.hidana.me 請求，而 react-router 處理剩下的 #/secFloor</p>
+<p>缺點</p>
+<ul>
+<li>網址很醜</li>
+<li>就 Search Engine Optimization(SEO)而言，網站是由一個頁面組成，幾乎沒有任何內容。</li>
+</ul>
+<h2>設定 basename</h2>
+<p>在 react-router 的 BrowserRouter 加上 basename 就可以解決這問題，但不知道是不是因為 custom domain 的原因，所以 process.env 裡面是空的</p>
+<div class="highlight"><pre><span></span>export default function Routes() {
+  const store = configureStore({ history });
+  return (
+    <span class="nt">&lt;Provider</span> <span class="na">store=</span><span class="s">{store}</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;BrowserRouter</span> <span class="na">history=</span><span class="s">{history}</span> <span class="na">basename=</span><span class="s">{process.env.PUBLIC_URL}</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Switch&gt;</span>
+          <span class="nt">&lt;Route</span> <span class="err">exact</span> <span class="na">path=</span><span class="s">&quot;/&quot;</span> <span class="na">component=</span><span class="s">{App}</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;Route</span> <span class="na">path=</span><span class="s">&quot;/todo&quot;</span> <span class="na">component=</span><span class="s">{Todo}</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;Route</span> <span class="na">component=</span><span class="s">{()</span> <span class="err">=</span><span class="nt">&gt;</span> (<span class="nt">&lt;div&gt;</span>404 Not found <span class="nt">&lt;/div&gt;</span>)} /&gt;
+        <span class="nt">&lt;/Switch&gt;</span>
+      <span class="nt">&lt;/BrowserRouter&gt;</span>
+    <span class="nt">&lt;/Provider&gt;</span>
+  );
+}
+</pre></div>
+
+
+<h2>用 index.html 取代 404.html</h2>
+<div class="img">
+    <a href="./images/20190813/2.png" data-lightbox="image-1" data-title="My caption">
+        <img src="./images/20190813/2.png" alt="20190813-2">
+    </a>
+</div>
+
+<p><a href="https://hugogiraudel.com/2017/05/13/using-create-react-app-on-netlify/">Using create-react-app on Netlify</a></p>
+<div class="highlight"><pre><span></span>//package.json
+{
+  &quot;build&quot;: &quot;react-scripts build &amp;&amp; cp build/index.html build/404.html&quot;
+}
+</pre></div>
+
+
+<p>把 index.html 覆蓋 404.html，讓 404.html 偽裝成 index.html 裡面涵蓋著被 hash 過的 js(e.g. main.8626537e.js).</p>
+<p>我想的大概流程應該是這樣</p>
+<p>原本有問題的網頁，如果從根目錄開始點擊，是可以完整呈現的，流程如下</p>
+<div class="highlight"><pre><span></span>訪問 test.hidana.me → 點擊某個按鈕到下一層 → 目前網頁在 test.hidana.me/secFloor
+</pre></div>
+
+
+<p>但如果 refresh 後，就會導向 404</p>
+<div class="highlight"><pre><span></span>訪問 test.hidana.me → 點擊某個按鈕到下一層 → 目前網頁在 test.hidana.me/secFloor → 在當前網頁 refresh → 導向 404 告訴你找不到
+</pre></div>
+
+
+<p>所以這邊用 index.html 複製過去到 404 讓他模擬，好像是從 index 來的方式，並成功得到 hash 過的 js 檔案可以用</p>
+<div class="highlight"><pre><span></span>訪問 test.hidana.me → 點擊某個按鈕到下一層 → 目前網頁在 test.hidana.me/secFloor → 在當前網頁 refresh → 導向 404 告訴你找不到(但模擬成 index.html) -&gt; 成功取得 test.hidana.me/secFloor
+</pre></div>
+
+
+<p>-</p>
+<p>參考文章</p>
+<p><a href="https://levelup.gitconnected.com/deploying-a-create-react-app-with-routing-to-github-pages-f386b6ce84c2">Deploying a create-react-app with routing to GitHub pages</a></p>
+<p><a href="https://medium.com/@Dragonza/react-router-problem-with-gh-pages-c93a5e243819">React-router problem with gh-pages</a></p>
+<p><a href="https://reacttraining.com/react-router/web/api/BrowserRouter"><BrowserRouter></a></p>
+<p><a href="https://github.com/facebook/create-react-app/issues/1765">Gh-pages deployment problems with react-router</a></p>
+<p><a href="https://hugogiraudel.com/2017/05/13/using-create-react-app-on-netlify/">Using create-react-app on Netlify</a></p>
+<p><a href="https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually">React-router urls don't work when refreshing or writing manually</a></p>
+			<div class="hr"></div>
+			<a href="#" class="go-top">↑</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "https-hidana-github-io"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Dana's blog &ndash;
+        Built by Dana
+    </p>
+</footer>		</div>
+	</div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-91860035-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="./theme/lightbox2/dist/js/lightbox.min.js"></script>
