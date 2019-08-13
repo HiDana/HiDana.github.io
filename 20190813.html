@@ -75,7 +75,7 @@ React-router 在 github page 的問題 - Dana / Front End Engineer's Mid-Night K
 					</p>
 				</header>
 			</section>
-			<p>最近想把 react 網頁部署在 github page 上，去遇到了在子頁面重新 refresh 會有 404 的問題</p>
+			<p>最近想把 react 網頁部署在 github page 上，並使用 custom domain，卻遇到了在子頁面重新 refresh 會有 404 的問題</p>
 <div class="img">
     <a href="./images/20190813/1.png" data-lightbox="image-1" data-title="My caption">
         <img src="./images/20190813/1.png" alt="20190813-1">
@@ -90,15 +90,18 @@ React-router 在 github page 的問題 - Dana / Front End Engineer's Mid-Night K
 <p>我們頁面換置到 test.hidana.me/secFloor 是在 client-side 自己使用的，沒有刷新頁面，因此完全沒有訪問到 server</p>
 <p>但當我們在 <code>test.hidana.me/secFloor</code> refresh 或是把這網址另外開始窗訪問，但 server 完全不認識這東西，因此這網頁沒有 react-router 的 js ，所以就會是 404</p>
 <p>網路上有很多解法，有 client 端解，也有從 server 端解，這邊主要提如何用前端簡單的處理這問題</p>
-<h2>用 Hash History</h2>
+<h2>方法一，用 Hash History</h2>
 <p>當訪問時 讓網址呈現 test.hidana.me/#/secFloor 這樣在跟 server 請求時，就只會用 test.hidana.me 請求，而 react-router 處理剩下的 #/secFloor</p>
 <p>缺點</p>
 <ul>
 <li>網址很醜</li>
 <li>就 Search Engine Optimization(SEO)而言，網站是由一個頁面組成，幾乎沒有任何內容。</li>
 </ul>
-<h2>設定 basename</h2>
-<p>在 react-router 的 BrowserRouter 加上 basename 就可以解決這問題，但不知道是不是因為 custom domain 的原因，所以 process.env 裡面是空的</p>
+<h2>方法二，設定 basename</h2>
+<blockquote>
+<p>此方法參考網路上文章，並未實際測試過</p>
+</blockquote>
+<p>在 react-router 的 BrowserRouter 加上 basename 就可以解決這問題，但 process.env 裡面是空的</p>
 <div class="highlight"><pre><span></span>export default function Routes() {
   const store = configureStore({ history });
   return (
@@ -116,7 +119,13 @@ React-router 在 github page 的問題 - Dana / Front End Engineer's Mid-Night K
 </pre></div>
 
 
-<h2>用 index.html 取代 404.html</h2>
+<p>因為使用 create-react-app 做靜態專案，所以會有類似問題</p>
+<p>這邊就可以在 build 時把 PUBLIC_URL 綁進去</p>
+<div class="highlight"><pre><span></span>&quot;build&quot;: &quot;set PUBLIC_URL=&lt;url&gt; &amp;&amp; node scripts/build.js&quot;,
+</pre></div>
+
+
+<h2>方法三，用 index.html 取代 404.html</h2>
 <div class="img">
     <a href="./images/20190813/2.png" data-lightbox="image-1" data-title="My caption">
         <img src="./images/20190813/2.png" alt="20190813-2">
@@ -148,6 +157,9 @@ React-router 在 github page 的問題 - Dana / Front End Engineer's Mid-Night K
 </pre></div>
 
 
+<blockquote>
+<p>這次遇到的問題，成功用 index.html 複製 404.html 解決掉，react 真的是到處都是好玩的坑啊！</p>
+</blockquote>
 <p>-</p>
 <p>參考文章</p>
 <p><a href="https://levelup.gitconnected.com/deploying-a-create-react-app-with-routing-to-github-pages-f386b6ce84c2">Deploying a create-react-app with routing to GitHub pages</a></p>
@@ -156,6 +168,7 @@ React-router 在 github page 的問題 - Dana / Front End Engineer's Mid-Night K
 <p><a href="https://github.com/facebook/create-react-app/issues/1765">Gh-pages deployment problems with react-router</a></p>
 <p><a href="https://hugogiraudel.com/2017/05/13/using-create-react-app-on-netlify/">Using create-react-app on Netlify</a></p>
 <p><a href="https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually">React-router urls don't work when refreshing or writing manually</a></p>
+<p><a href="https://thecodingday.blogspot.com/2018/12/reactreact-routegithub-pages.html">解決 React/React route 部屬在 GitHub Pages 上遇到的問題</a></p>
 			<div class="hr"></div>
 			<a href="#" class="go-top">↑</a>
 <div class="comments">
